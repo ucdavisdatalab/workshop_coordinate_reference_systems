@@ -1,4 +1,4 @@
-# Workshop: YOUR WORKSHOP TITLE
+# Workshop: Coordinate Reference Sytems
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
 _Spring 2021_  
