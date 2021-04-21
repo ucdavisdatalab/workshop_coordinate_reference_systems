@@ -1,0 +1,13 @@
+description
+learning-objectives
+prerequisites
+concepts
+coordinate-reference-system-crs
+datum
+projection
+additional-parameters
+which-crsprojection-should-i-use
+notation-for-coordinate-reference-systems-in-r
+epsg-code
+proj-string
+defining-a-projection-vs.-reprojecting-transforming

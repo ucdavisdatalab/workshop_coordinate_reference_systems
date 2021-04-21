@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Coordinate Reference Systems</title>
+  <meta name="description" content="Coordinate Reference Systems" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Coordinate Reference Systems" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/" />
+  
+  
+  <meta name="github-repo" content="ucdavisdatalab/workshop_coordinate_reference_systems" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Coordinate Reference Systems" />
+  
+  
+  
+
+<meta name="author" content="Dr. Michele Tobias" />
+
+
+<meta name="date" content="2021-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="concepts.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://datalab.ucdavis.edu/">
+  <img src="https://datalab.ucdavis.edu/wp-content/uploads/2019/07/datalab-logo-full-color-rgb-1.png" style="height: 100%; width: 100%; object-fit: contain" />
+</a></li>
+<li><a href="./" style="font-size: 18px">Coordinate Reference Systems</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>0.1</b> Description</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>0.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>0.3</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="concepts.html"><a href="concepts.html"><i class="fa fa-check"></i><b>1</b> Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="concepts.html"><a href="concepts.html#coordinate-reference-system-crs"><i class="fa fa-check"></i><b>1.1</b> Coordinate Reference System (CRS)</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="concepts.html"><a href="concepts.html#datum"><i class="fa fa-check"></i><b>1.1.1</b> Datum</a></li>
+<li class="chapter" data-level="1.1.2" data-path="concepts.html"><a href="concepts.html#projection"><i class="fa fa-check"></i><b>1.1.2</b> Projection</a></li>
+<li class="chapter" data-level="1.1.3" data-path="concepts.html"><a href="concepts.html#additional-parameters"><i class="fa fa-check"></i><b>1.1.3</b> Additional Parameters</a></li>
+<li class="chapter" data-level="1.1.4" data-path="concepts.html"><a href="concepts.html#which-crsprojection-should-i-use"><i class="fa fa-check"></i><b>1.1.4</b> Which CRS/projection should I use?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="concepts.html"><a href="concepts.html#notation-for-coordinate-reference-systems-in-r"><i class="fa fa-check"></i><b>1.2</b> Notation for Coordinate Reference Systems in R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="concepts.html"><a href="concepts.html#epsg-code"><i class="fa fa-check"></i><b>1.2.1</b> EPSG Code</a></li>
+<li class="chapter" data-level="1.2.2" data-path="concepts.html"><a href="concepts.html#proj-string"><i class="fa fa-check"></i><b>1.2.2</b> PROJ String</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="concepts.html"><a href="concepts.html#defining-a-projection-vs.-reprojecting-transforming"><i class="fa fa-check"></i><b>1.3</b> Defining a Projection vs. Reprojecting (Transforming)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Coordinate Reference Systems</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Coordinate Reference Systems</h1>
+<p class="author"><em>Dr. Michele Tobias</em></p>
+<p class="date"><em>2021-04-21</em></p>
+</div>
+<div id="overview" class="section level1 unnumbered">
+<h1>Overview</h1>
+<div id="description" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Description</h2>
+<p>In this workshop, participants will learn about projected coordinate reference systems (CRS, commonly called “projections”) and how to apply them in R to spatial data. We will discuss the components of a CRS, how to apply them, how to translate your data into a different CRS, and how to choose a CRS.</p>
+</div>
+<div id="learning-objectives" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Learning Objectives</h2>
+<p>By the end of this workshop, participants will have a better understanding of what a projected coordinate system is, why you would choose one over another, and how to apply them correctly to geospatial data in R.</p>
+</div>
+<div id="prerequisites" class="section level2" number="0.3">
+<h2><span class="header-section-number">0.3</span> Prerequisites</h2>
+<p>Participants should have a basic understanding of R (for example, be able to create variables and load common data formats like a CSV) and a basic understanding of GIS data formats (e.g., raster and vector data). Participants should also install R and RStudio.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="concepts.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/blob/master/index.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
