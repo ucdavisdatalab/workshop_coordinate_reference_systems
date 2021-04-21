@@ -1,4 +1,4 @@
-# Hands-On Tutorial
+# Tutorial with R
 Finally, now we're going to work in R to get some hands-on practice with the concepts we just discussed.
 
 We'll be working with sp objects today, but you should also know that there are sf objects as well.  [Roger Bivand's review of spatial data for R](https://cran.r-project.org/web/views/Spatial.html) is helpful for understading the options for working with spatial data.
@@ -18,9 +18,11 @@ Let's load the libraries we'll need.
 TIP: I add to this section as I write my code and need new libraries. Keep them in one place for easy reference.
 
 ```{r, message=FALSE, warning=FALSE}
-install.packages("sf")
+#install.packages("sf")
+#install.packages("terra")
 
 library("sf")
+library("terra")
 ```
 
 ### Set your working directory to the folder where you saved your data
@@ -145,10 +147,6 @@ We've just looked at how to work with the CRS of vector data. Now let's look at 
 
 First, we need to install the package that works with raster data. Today we'll use *terra* but there are other packages like *raster* that also work in similar ways.
 
-```{r, warning=FALSE}
-install.packages("terra")
-library(terra)
-```
 ### Load Data
 Now we'll load our data. This is a digital elevation model (DEM) of the City of San Francisco.
 
