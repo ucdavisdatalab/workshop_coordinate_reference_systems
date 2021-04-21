@@ -60,12 +60,19 @@ repo:
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
 _Spring 2021_  
-_Instructor: YOUR NAME <<YOUR_EMAIL@ucdavis.edu>>_  
+_Instructor: Michele Tobias, PhD <<mmtobias@ucdavis.edu>>_  
 
-* [Reader](https://ucdavisdatalab.github.io/YOUR_REPOSITORY/)
-* [Event Page](https://datalab.ucdavis.edu/eventscalendar/YOUR_EVENT/)
+* [Reader](https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/)
+* [Event Page](https://datalab.ucdavis.edu/eventscalendar/maptimedavis-projected-coordinate-systems-in-r/)
 
-YOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC
+## Description 
+In this workshop, participants will learn about projected coordinate reference systems (CRS, commonly called “projections”) and how to apply them in R to spatial data. We will discuss the components of a CRS, how to apply them, how to translate your data into a different CRS, and how to choose a CRS.
+
+## Learning Objectives
+By the end of this workshop, participants will have a better understanding of what a projected coordinate system is, why you would choose one over another, and how to apply them correctly to geospatial data in R.
+
+## Prerequisites
+Participants should have a basic understanding of R (for example, be able to create variables and load common data formats like a CSV) and a basic understanding of GIS data formats (e.g., raster and vector data). Participants should also install R and RStudio.
 
 
 ## Contributing
