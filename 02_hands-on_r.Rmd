@@ -3,31 +3,42 @@ Finally, now we're going to work in R to get some hands-on practice with the con
 
 We'll be working with sp objects today, but you should also know that there are sf objects as well.  [Roger Bivand's review of spatial data for R](https://cran.r-project.org/web/views/Spatial.html) is helpful for understading the options for working with spatial data.
 
-## Download the data
+## Getting Started
 
-The data for this workshop is available in the [data folder](https://github.com/MicheleTobias/R-Projections-Workshop/tree/master/Data) in this repository, or you can [download a .zip file from FigShare](https://figshare.com/s/f68e06c4177e27d0aa47).
+### Download the data
 
-## Start R
+The data for this workshop is available in the [data folder](https://github.com/MicheleTobias/R-Projections-Workshop/tree/master/Data) in this repository, or you can [download a .zip file from Box](https://ucdavis.box.com/s/8d6wynu0lm7bfzsf437le8iq8lxou0yn).
+
+### Start R
 Pick the R flavor of your choice - regular R, R Studio, etc. - and start it up.  You can either add the commands we'll be using to a script file to run, or you can just run the lines individually in your console to see how they work.  It's up to you.
 
-## Load the libraries we'll need.
+### Libraries
+Let's load the libraries we'll need.
+
 TIP: I add to this section as I write my code and need new libraries. Keep them in one place for easy reference.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 install.packages("sf")
 
 library("sf")
 ```
 
-## Set your working directory to the folder where you saved your data
+### Set your working directory to the folder where you saved your data
 TIP: Windows users, use \\\ instead of \ or switch the direction of the slashes to /... it has to do with escape characters.
+```{r setup, echo=FALSE}
 
-```{r}
-setwd("C:/Workshops/Data")
+knitr::opts_knit$set(root.dir = "C:\\Users\\mmtobias\\Documents\\GitHub\\datalab\\workshop_coordinate_reference_systems")
+
+```
+
+```{r eval = FALSE}
+setwd("C:/WorkshopData")
 ```
 Replace C:/Workshops/Data with the path to the folder in which you saved your data.
 
-## Read the data into our R session
+## Vector Data
+
+### Read the data into our R session
 Because "points" by itself is a command and we don't want confusion, I've added "ws." (WS for watershed) to the front of my variable names.
 
 Most of the vector data formats can be read into r with the ```st_read``` function. To see the help files for this function, run ```?st_read``` in your console.
@@ -48,7 +59,7 @@ ws.polygons
 Note that the output not only shows the data but gives you some metadata as well, such as the geometry type, bounding box (bbox), and the projected CRS, which is "NAD83 / California Albers".
 
 
-## Indentifying the Assigned CRS
+### Indentifying the Assigned CRS
 To see just the coordinate reference system, we can use the crs() command.
 Let's check the CRS for each of our files:
 
@@ -60,7 +71,7 @@ st_crs(ws.streams)
 
 It looks like the streams dataset does not have its CRS defined.  
 
-## Defining a CRS
+### Defining a CRS
 Let's be clear that the streams data *has* a CRS, but R doesn't know what it should be.  (Someone may have forgotten to include the .prj file in this shapefile.)  You don't get to decide what you want it to be, but rather figure out what it *IS* and tell R which coordinate system to use.  How do you  know which CRS the data has if its not properly defined?  Typically, you first ask the person who sent it.  If that fails, you can search for another version of the data online to get a file with the correct projection information.  Finally, outright guessing can work, but isn't recommended.  We know that the CRS for this data should be EPSG 3309 (because that's what the instructor saved it as before she deleted the .prj file... shapefiles are not a great exchange format, FYI).
 
 Set the CRS:
@@ -75,7 +86,7 @@ EPSG 3309 = California Albers, NAD 27
 Let's imagine we loaded up our data and find that it shows up on a map in the wrong location.  What happened?  Someone defined the CRS incorrectly.
 How do you fix it?  First you figure out what the CRS should be, then you run one of the lines above with the correct CRS definition to fix the file.
 
-## Tranforming / Reprojecting Vector Data
+### Tranforming / Reprojecting Vector Data
 We need to get all our data into the same projection so it will plot together on one map before we can do any kind of spatial process on the data.
 
 ```{r}
@@ -95,7 +106,7 @@ st_crs(ws.streams)
 ```
 Now they all should match.
 
-## Plotting the Data
+### Plotting the Data
 Lets make a map now that all our data is in the same projection.  What if we had tried to do this earlier before we fixed out projection definitions and transformed the files into the same projections?
 
 Load up the CA Counties layer to use as reference in a map:
@@ -128,40 +139,45 @@ Some explanation of the code above for plotting the spatial data:
 * ```bg``` sets the background color for the plot
 * colors can be specified with words like "gray" or html hex codes like #dff9fd
 
-# Raster Data
+## Raster Data
 
 We've just looked at how to work with the CRS of vector data. Now let's look at raster data.
 
 First, we need to install the package that works with raster data. Today we'll use *terra* but there are other packages like *raster* that also work in similar ways.
 
-```{r}
+```{r, warning=FALSE}
 install.packages("terra")
 library(terra)
 ```
+### Load Data
 Now we'll load our data. This is a digital elevation model (DEM) of the City of San Francisco.
 
 ```{r}
 dem<-rast(x="data/DEM_SF.tif")
 ```
 
+### Indentifying the Assigned CRS
 What is the CRS of this dataset? Note that the command to read the CRS in the *terra* package is different from *sf*.
 
 ```{r}
 crs(dem)
 ```
 
+### Defining a CRS
 Our data came with a CRS, but in the event that we needed to define it, we would do it like this:
 
 ```{r}
 crs(dem)<-"epsg:4269"
 ```
 
+### Tranforming / Reprojecting Raster Data
 So we know that our data is in the CRS with EPSG code 4269. That's not the same CRS as our other data, so we'll need to transform it. Again, *terra* uses different names than *sf* does. Is this confusing? Yes it is. This is why we read the documentation.
 
 ```{r}
 dem.3310<-project(dem, "epsg:3310")
 ```
 
+### Plotting the Data
 Now that all of our datasets are in the same projection, we can use them together. Let's make a map with both our raster and vector data.
 
 ```{r}
@@ -170,7 +186,7 @@ plot(ws.streams.3310$geometry, col="#3182bd", lwd=3, add=TRUE)
 plot(ws.polygons$geometry, lwd=1, border="grey35", add=TRUE)
 ```
 
-# Conclusion
+## Conclusion
 After completing this workshop, you should now have a better understanding of Coordinate Reference Systems (CRS) or projections, as they are often called colloquially.  You can now find out what the CRS is for a dataset and know the common formats this can take.  You should understand the difference between defining a CRS and tranforming a dataset (often called "reprojecting" in other GIS programs), when to use them, and how to execute both commands.  You've also seen how to use the basic plot() function to make a map.
 
 Now that you've had some hands-on experience with projections and spatial data, it's a good time to go back an review the concepts introduced in the beginning of the workshop.  You may find that some of it makes more sense now that you have more experience.
@@ -178,8 +194,8 @@ Now that you've had some hands-on experience with projections and spatial data, 
 Do you now feel like you know everything you need to know and will **never** have any more questions?  Of course not!  It's a learning process that will continue for the rest of your career working with spatial data.  Need more help?  See data.ucdavis.edu for how to contact your friendly UC Davis GIS Data Curator.
 
 
----------------------------------------
-# Resources Used to Compile this Tutorial:
+
+## Resources Used to Compile this Tutorial:
 
 1. [Geocomputation with R](https://geocompr.robinlovelace.net/) by Robin Lovelace
 1. [Rspatial.org](http://rspatial.org/spatial/rst/6-crs.html)

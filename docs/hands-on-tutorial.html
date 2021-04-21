@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Hands-On Tutorial | Coordinate Reference Systems</title>
+  <meta name="description" content="2 Hands-On Tutorial | Coordinate Reference Systems" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Hands-On Tutorial | Coordinate Reference Systems" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://ucdavisdatalab.github.io/workshop_coordinate_reference_systems/" />
+  
+  
+  <meta name="github-repo" content="ucdavisdatalab/workshop_coordinate_reference_systems" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Hands-On Tutorial | Coordinate Reference Systems" />
+  
+  
+  
+
+<meta name="author" content="Dr. Michele Tobias" />
+
+
+<meta name="date" content="2021-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="concepts.html"/>
+<link rel="next" href="raster-data.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://datalab.ucdavis.edu/">
+  <img src="https://datalab.ucdavis.edu/wp-content/uploads/2019/07/datalab-logo-full-color-rgb-1.png" style="height: 100%; width: 100%; object-fit: contain" />
+</a></li>
+<li><a href="./" style="font-size: 18px">Coordinate Reference Systems</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>0.1</b> Description</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>0.2</b> Learning Objectives</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>0.3</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="concepts.html"><a href="concepts.html"><i class="fa fa-check"></i><b>1</b> Concepts</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="concepts.html"><a href="concepts.html#coordinate-reference-system-crs"><i class="fa fa-check"></i><b>1.1</b> Coordinate Reference System (CRS)</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="concepts.html"><a href="concepts.html#datum"><i class="fa fa-check"></i><b>1.1.1</b> Datum</a></li>
+<li class="chapter" data-level="1.1.2" data-path="concepts.html"><a href="concepts.html#projection"><i class="fa fa-check"></i><b>1.1.2</b> Projection</a></li>
+<li class="chapter" data-level="1.1.3" data-path="concepts.html"><a href="concepts.html#additional-parameters"><i class="fa fa-check"></i><b>1.1.3</b> Additional Parameters</a></li>
+<li class="chapter" data-level="1.1.4" data-path="concepts.html"><a href="concepts.html#which-crsprojection-should-i-use"><i class="fa fa-check"></i><b>1.1.4</b> Which CRS/projection should I use?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="concepts.html"><a href="concepts.html#notation-for-coordinate-reference-systems-in-r"><i class="fa fa-check"></i><b>1.2</b> Notation for Coordinate Reference Systems in R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="concepts.html"><a href="concepts.html#epsg-code"><i class="fa fa-check"></i><b>1.2.1</b> EPSG Code</a></li>
+<li class="chapter" data-level="1.2.2" data-path="concepts.html"><a href="concepts.html#proj-string"><i class="fa fa-check"></i><b>1.2.2</b> PROJ String</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="concepts.html"><a href="concepts.html#defining-a-projection-vs.-reprojecting-transforming"><i class="fa fa-check"></i><b>1.3</b> Defining a Projection vs. Reprojecting (Transforming)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html"><i class="fa fa-check"></i><b>2</b> Hands-On Tutorial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#download-the-data"><i class="fa fa-check"></i><b>2.1</b> Download the data</a></li>
+<li class="chapter" data-level="2.2" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#start-r"><i class="fa fa-check"></i><b>2.2</b> Start R</a></li>
+<li class="chapter" data-level="2.3" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#load-the-libraries-well-need."><i class="fa fa-check"></i><b>2.3</b> Load the libraries we’ll need.</a></li>
+<li class="chapter" data-level="2.4" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#set-your-working-directory-to-the-folder-where-you-saved-your-data"><i class="fa fa-check"></i><b>2.4</b> Set your working directory to the folder where you saved your data</a></li>
+<li class="chapter" data-level="2.5" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#read-the-data-into-our-r-session"><i class="fa fa-check"></i><b>2.5</b> Read the data into our R session</a></li>
+<li class="chapter" data-level="2.6" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#indentifying-the-assigned-crs"><i class="fa fa-check"></i><b>2.6</b> Indentifying the Assigned CRS</a></li>
+<li class="chapter" data-level="2.7" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#defining-a-crs"><i class="fa fa-check"></i><b>2.7</b> Defining a CRS</a></li>
+<li class="chapter" data-level="2.8" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#tranforming-reprojecting-vector-data"><i class="fa fa-check"></i><b>2.8</b> Tranforming / Reprojecting Vector Data</a></li>
+<li class="chapter" data-level="2.9" data-path="hands-on-tutorial.html"><a href="hands-on-tutorial.html#plotting-the-data"><i class="fa fa-check"></i><b>2.9</b> Plotting the Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="raster-data.html"><a href="raster-data.html"><i class="fa fa-check"></i><b>3</b> Raster Data</a></li>
+<li class="chapter" data-level="4" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion</a></li>
+<li class="chapter" data-level="5" data-path="resources-used-to-compile-this-tutorial.html"><a href="resources-used-to-compile-this-tutorial.html"><i class="fa fa-check"></i><b>5</b> Resources Used to Compile this Tutorial:</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Coordinate Reference Systems</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hands-on-tutorial" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Hands-On Tutorial</h1>
+<p>Finally, now we’re going to work in R to get some hands-on practice with the concepts we just discussed.</p>
+<p>We’ll be working with sp objects today, but you should also know that there are sf objects as well. <a href="https://cran.r-project.org/web/views/Spatial.html">Roger Bivand’s review of spatial data for R</a> is helpful for understading the options for working with spatial data.</p>
+<div id="download-the-data" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Download the data</h2>
+<p>The data for this workshop is available in the <a href="https://github.com/MicheleTobias/R-Projections-Workshop/tree/master/Data">data folder</a> in this repository, or you can <a href="https://ucdavis.box.com/s/8d6wynu0lm7bfzsf437le8iq8lxou0yn">download a .zip file from Box</a>.</p>
+</div>
+<div id="start-r" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Start R</h2>
+<p>Pick the R flavor of your choice - regular R, R Studio, etc. - and start it up. You can either add the commands we’ll be using to a script file to run, or you can just run the lines individually in your console to see how they work. It’s up to you.</p>
+</div>
+<div id="load-the-libraries-well-need." class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Load the libraries we’ll need.</h2>
+<p>TIP: I add to this section as I write my code and need new libraries. Keep them in one place for easy reference.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="hands-on-tutorial.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
+<pre><code>## Installing sf [0.9-8] ...
+##  OK [linked cache]</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="hands-on-tutorial.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
+</div>
+<div id="set-your-working-directory-to-the-folder-where-you-saved-your-data" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Set your working directory to the folder where you saved your data</h2>
+<p>TIP: Windows users, use \ instead of  or switch the direction of the slashes to /… it has to do with escape characters.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="hands-on-tutorial.html#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">set</span>(<span class="at">root.dir =</span> <span class="st">&quot;D:/WorkshopData/Coordinate-Refrence-Sytems&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="hands-on-tutorial.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/WorkshopData&quot;</span>)</span></code></pre></div>
+<p>Replace C:/Workshops/Data with the path to the folder in which you saved your data.</p>
+</div>
+<div id="read-the-data-into-our-r-session" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Read the data into our R session</h2>
+<p>Because “points” by itself is a command and we don’t want confusion, I’ve added “ws.” (WS for watershed) to the front of my variable names.</p>
+<p>Most of the vector data formats can be read into r with the <code>st_read</code> function. To see the help files for this function, run <code>?st_read</code> in your console.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="hands-on-tutorial.html#cb6-1" aria-hidden="true" tabindex="-1"></a>ws.points<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/WBDHU8_Points_SF.geojson&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `WBDHU8_Points_SF&#39; from data source `D:\WorkshopData\Coordinate-Refrence-Sytems\data\WBDHU8_Points_SF.geojson&#39; using driver `GeoJSON&#39;
+## Simple feature collection with 6 features and 15 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -250560.3 ymin: -81326.09 xmax: -162308 ymax: 21467.35
+## Projected CRS: NAD83 / California Albers</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="hands-on-tutorial.html#cb8-1" aria-hidden="true" tabindex="-1"></a>ws.polygons<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/WBDHU8_SF.geojson&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `WBDHU8_SF&#39; from data source `D:\WorkshopData\Coordinate-Refrence-Sytems\data\WBDHU8_SF.geojson&#39; using driver `GeoJSON&#39;
+## Simple feature collection with 6 features and 10 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -278890 ymin: -122244.5 xmax: -122332.5 ymax: 75400.89
+## Projected CRS: NAD83 / California Albers</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="hands-on-tutorial.html#cb10-1" aria-hidden="true" tabindex="-1"></a>ws.streams<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/flowlines.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `flowlines&#39; from data source `D:\WorkshopData\Coordinate-Refrence-Sytems\data\flowlines.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 4857 features and 11 fields
+## Geometry type: LINESTRING
+## Dimension:     XY
+## Bounding box:  xmin: -265095.9 ymin: -116267.6 xmax: -124022.6 ymax: 72531.26
+## CRS:           NA</code></pre>
+<p>Let’s look at the contents of one of the files:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="hands-on-tutorial.html#cb12-1" aria-hidden="true" tabindex="-1"></a>ws.polygons</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 10 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -278890 ymin: -122244.5 xmax: -122332.5 ymax: 75400.89
+## Projected CRS: NAD83 / California Albers
+##                                    TNMID   LOADDATE AREAACRES AREASQKM STATES
+## 1 {7A24A43D-27F0-4B35-A273-AF361042B2A8} 2012-06-11  489068.6  1979.19     CA
+## 2 {F0F29A9E-E9D6-4F24-9D1A-CB8C7E22141E} 2012-06-11  853256.6  3453.01     CA
+## 3 {7E0042D2-0B68-40B4-83FA-2850D989E91A} 2012-06-11  461004.8  1865.62     CA
+## 4 {BE7EC116-0BE6-419E-8165-84B063FE8468} 2012-06-11  417511.7  1689.61     CA
+## 5 {E67739F5-92F6-49B0-A017-F4A0372DD4F9} 2012-06-11  784983.8  3176.72     CA
+## 6 {9B6A9642-9FE9-4F0B-BB30-90E918E63551} 2012-06-11  431362.9  1745.67     CA
+##       HUC8                        NAME SHAPE_LENG SHAPE_AREA Rank_Acres
+## 1 18050005          Tomales-Drake Bays   3.177305  0.2031323          4
+## 2 18050004           San Francisco Bay   4.019037  0.3522663          6
+## 3 18050003                      Coyote   3.232746  0.1895257          3
+## 4 18050001                  Suisun Bay   2.795490  0.1735314          1
+## 5 18050002               San Pablo Bay   3.985180  0.3266645          5
+## 6 18050006 San Francisco Coastal South   2.743098  0.1774121          2
+##                         geometry
+## 1 MULTIPOLYGON (((-252626.2 4...
+## 2 MULTIPOLYGON (((-187360.2 -...
+## 3 MULTIPOLYGON (((-164610.2 -...
+## 4 MULTIPOLYGON (((-188614.2 4...
+## 5 MULTIPOLYGON (((-227456.2 7...
+## 6 MULTIPOLYGON (((-220773.4 -...</code></pre>
+<p>Note that the output not only shows the data but gives you some metadata as well, such as the geometry type, bounding box (bbox), and the projected CRS, which is “NAD83 / California Albers”.</p>
+</div>
+<div id="indentifying-the-assigned-crs" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Indentifying the Assigned CRS</h2>
+<p>To see just the coordinate reference system, we can use the crs() command.
+Let’s check the CRS for each of our files:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="hands-on-tutorial.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.points)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 / California Albers 
+##   wkt:
+## PROJCRS[&quot;NAD83 / California Albers&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;California Albers&quot;,
+##         METHOD[&quot;Albers Equal Area&quot;,
+##             ID[&quot;EPSG&quot;,9822]],
+##         PARAMETER[&quot;Latitude of false origin&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8821]],
+##         PARAMETER[&quot;Longitude of false origin&quot;,-120,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8822]],
+##         PARAMETER[&quot;Latitude of 1st standard parallel&quot;,34,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8823]],
+##         PARAMETER[&quot;Latitude of 2nd standard parallel&quot;,40.5,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8824]],
+##         PARAMETER[&quot;Easting at false origin&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8826]],
+##         PARAMETER[&quot;Northing at false origin&quot;,-4000000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8827]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;State-wide spatial data management.&quot;],
+##         AREA[&quot;United States (USA) - California.&quot;],
+##         BBOX[32.53,-124.45,42.01,-114.12]],
+##     ID[&quot;EPSG&quot;,3310]]</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="hands-on-tutorial.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.polygons)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 / California Albers 
+##   wkt:
+## PROJCRS[&quot;NAD83 / California Albers&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;California Albers&quot;,
+##         METHOD[&quot;Albers Equal Area&quot;,
+##             ID[&quot;EPSG&quot;,9822]],
+##         PARAMETER[&quot;Latitude of false origin&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8821]],
+##         PARAMETER[&quot;Longitude of false origin&quot;,-120,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8822]],
+##         PARAMETER[&quot;Latitude of 1st standard parallel&quot;,34,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8823]],
+##         PARAMETER[&quot;Latitude of 2nd standard parallel&quot;,40.5,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8824]],
+##         PARAMETER[&quot;Easting at false origin&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8826]],
+##         PARAMETER[&quot;Northing at false origin&quot;,-4000000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8827]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;State-wide spatial data management.&quot;],
+##         AREA[&quot;United States (USA) - California.&quot;],
+##         BBOX[32.53,-124.45,42.01,-114.12]],
+##     ID[&quot;EPSG&quot;,3310]]</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="hands-on-tutorial.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.streams)</span></code></pre></div>
+<pre><code>## Coordinate Reference System: NA</code></pre>
+<p>It looks like the streams dataset does not have its CRS defined.</p>
+</div>
+<div id="defining-a-crs" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Defining a CRS</h2>
+<p>Let’s be clear that the streams data <em>has</em> a CRS, but R doesn’t know what it should be. (Someone may have forgotten to include the .prj file in this shapefile.) You don’t get to decide what you want it to be, but rather figure out what it <em>IS</em> and tell R which coordinate system to use. How do you know which CRS the data has if its not properly defined? Typically, you first ask the person who sent it. If that fails, you can search for another version of the data online to get a file with the correct projection information. Finally, outright guessing can work, but isn’t recommended. We know that the CRS for this data should be EPSG 3309 (because that’s what the instructor saved it as before she deleted the .prj file… shapefiles are not a great exchange format, FYI).</p>
+<p>Set the CRS:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="hands-on-tutorial.html#cb20-1" aria-hidden="true" tabindex="-1"></a>ws.streams<span class="fl">.3309</span><span class="ot">&lt;-</span><span class="fu">st_set_crs</span>(ws.streams, <span class="at">value=</span><span class="dv">3309</span>) </span></code></pre></div>
+<p>EPSG 3309 = California Albers, NAD 27</p>
+<p>Let’s imagine we loaded up our data and find that it shows up on a map in the wrong location. What happened? Someone defined the CRS incorrectly.
+How do you fix it? First you figure out what the CRS should be, then you run one of the lines above with the correct CRS definition to fix the file.</p>
+</div>
+<div id="tranforming-reprojecting-vector-data" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Tranforming / Reprojecting Vector Data</h2>
+<p>We need to get all our data into the same projection so it will plot together on one map before we can do any kind of spatial process on the data.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="hands-on-tutorial.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tranform/reproject vector data</span></span>
+<span id="cb21-2"><a href="hands-on-tutorial.html#cb21-2" aria-hidden="true" tabindex="-1"></a>ws.streams<span class="fl">.3310</span><span class="ot">&lt;-</span><span class="fu">st_transform</span>(ws.streams<span class="fl">.3309</span>, <span class="at">crs=</span><span class="dv">3310</span>)</span>
+<span id="cb21-3"><a href="hands-on-tutorial.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="hands-on-tutorial.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   another option: match the CRS of the polygons data</span></span>
+<span id="cb21-5"><a href="hands-on-tutorial.html#cb21-5" aria-hidden="true" tabindex="-1"></a>ws.streams<span class="fl">.3310</span><span class="ot">&lt;-</span><span class="fu">st_transform</span>(ws.streams<span class="fl">.3309</span>, <span class="at">crs=</span><span class="fu">st_crs</span>(ws.polygons))</span></code></pre></div>
+<p>Let’s check the CRS for each of our files again:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="hands-on-tutorial.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.points)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 / California Albers 
+##   wkt:
+## PROJCRS[&quot;NAD83 / California Albers&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;California Albers&quot;,
+##         METHOD[&quot;Albers Equal Area&quot;,
+##             ID[&quot;EPSG&quot;,9822]],
+##         PARAMETER[&quot;Latitude of false origin&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8821]],
+##         PARAMETER[&quot;Longitude of false origin&quot;,-120,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8822]],
+##         PARAMETER[&quot;Latitude of 1st standard parallel&quot;,34,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8823]],
+##         PARAMETER[&quot;Latitude of 2nd standard parallel&quot;,40.5,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8824]],
+##         PARAMETER[&quot;Easting at false origin&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8826]],
+##         PARAMETER[&quot;Northing at false origin&quot;,-4000000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8827]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;State-wide spatial data management.&quot;],
+##         AREA[&quot;United States (USA) - California.&quot;],
+##         BBOX[32.53,-124.45,42.01,-114.12]],
+##     ID[&quot;EPSG&quot;,3310]]</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="hands-on-tutorial.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.polygons)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 / California Albers 
+##   wkt:
+## PROJCRS[&quot;NAD83 / California Albers&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;California Albers&quot;,
+##         METHOD[&quot;Albers Equal Area&quot;,
+##             ID[&quot;EPSG&quot;,9822]],
+##         PARAMETER[&quot;Latitude of false origin&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8821]],
+##         PARAMETER[&quot;Longitude of false origin&quot;,-120,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8822]],
+##         PARAMETER[&quot;Latitude of 1st standard parallel&quot;,34,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8823]],
+##         PARAMETER[&quot;Latitude of 2nd standard parallel&quot;,40.5,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8824]],
+##         PARAMETER[&quot;Easting at false origin&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8826]],
+##         PARAMETER[&quot;Northing at false origin&quot;,-4000000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8827]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;State-wide spatial data management.&quot;],
+##         AREA[&quot;United States (USA) - California.&quot;],
+##         BBOX[32.53,-124.45,42.01,-114.12]],
+##     ID[&quot;EPSG&quot;,3310]]</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="hands-on-tutorial.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ws.streams)</span></code></pre></div>
+<pre><code>## Coordinate Reference System: NA</code></pre>
+<p>Now they all should match.</p>
+</div>
+<div id="plotting-the-data" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Plotting the Data</h2>
+<p>Lets make a map now that all our data is in the same projection. What if we had tried to do this earlier before we fixed out projection definitions and transformed the files into the same projections?</p>
+<p>Load up the CA Counties layer to use as reference in a map:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="hands-on-tutorial.html#cb28-1" aria-hidden="true" tabindex="-1"></a>ca.counties<span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/CA_Counties.geojson&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `CA_Counties&#39; from data source `D:\WorkshopData\Coordinate-Refrence-Sytems\data\CA_Counties.geojson&#39; using driver `GeoJSON&#39;
+## Simple feature collection with 179 features and 12 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -374443.2 ymin: -604504.7 xmax: 540082.8 ymax: 450029.9
+## Projected CRS: NAD83 / California Albers</code></pre>
+<p>Let’s plot all the data together:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="hands-on-tutorial.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb30-2"><a href="hands-on-tutorial.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  ca.counties<span class="sc">$</span>geometry, </span>
+<span id="cb30-3"><a href="hands-on-tutorial.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col=</span><span class="st">&quot;#FFFDEA&quot;</span>, </span>
+<span id="cb30-4"><a href="hands-on-tutorial.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">border=</span><span class="st">&quot;gray&quot;</span>, </span>
+<span id="cb30-5"><a href="hands-on-tutorial.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlim=</span><span class="fu">st_bbox</span>(ws.polygons)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], </span>
+<span id="cb30-6"><a href="hands-on-tutorial.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim=</span><span class="fu">st_bbox</span>(ws.polygons)[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>], </span>
+<span id="cb30-7"><a href="hands-on-tutorial.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg=</span><span class="st">&quot;#dff9fd&quot;</span>,  </span>
+<span id="cb30-8"><a href="hands-on-tutorial.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Perennial Streams&quot;</span>,</span>
+<span id="cb30-9"><a href="hands-on-tutorial.html#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">sub =</span> <span class="st">&quot;in the San Francisco Bay Watersheds&quot;</span></span>
+<span id="cb30-10"><a href="hands-on-tutorial.html#cb30-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-11"><a href="hands-on-tutorial.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ws.streams<span class="sc">$</span>geometry, <span class="at">col=</span><span class="st">&quot;#3182bd&quot;</span>, <span class="at">lwd=</span><span class="fl">1.75</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb30-12"><a href="hands-on-tutorial.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ws.points<span class="sc">$</span>geometry, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="dv">3</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb30-13"><a href="hands-on-tutorial.html#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ws.polygons<span class="sc">$</span>geometry, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">border=</span><span class="st">&quot;grey35&quot;</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="02_hands-on_r_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+Some explanation of the code above for plotting the spatial data:
+* <code>xlim/ylim</code> sets the extent. Here I used the numbers from the bounding box of the polygon dataset, but you could put in numbers - remember that this is projected data so lat/long won’t work
+* <code>add=TRUE</code> makes the 2nd, 3rd, 4th, etc. datasets plot on the same map as the first dataset you plot - order matters
+* <code>col</code> sets the fill color for the geometry
+* <code>border</code> sets the outline color (or stroke for users of vector graphics programs)
+* <code>bg</code> sets the background color for the plot
+* colors can be specified with words like “gray” or html hex codes like #dff9fd</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="concepts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="raster-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/edit/master/02_hands-on_r.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/blob/master/02_hands-on_r.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
