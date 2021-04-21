@@ -1,6 +1,6 @@
 ---
 title: Coordinate Reference Systems
-author: Michele Tobias, PhD
+author: Dr. Michele Tobias
 date: "`r Sys.Date()`"
 
 github-repo: ucdavisdatalab/workshop_coordinate_reference_systems
@@ -19,17 +19,23 @@ output:
           <li><a href="./" style="font-size: 18px">Coordinate Reference Systems</a></li>
         collapse: section
       sharing: no
-      view: https://github.com/ucdavisdatalab/YOUR_REPO/blob/master/%s
-      edit: https://github.com/ucdavisdatalab/YOUR_REPO/edit/master/%s
+      view: https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/blob/master/%s
+      edit: https://github.com/ucdavisdatalab/workshop_coordinate_reference_systems/edit/master/%s
 ---
 
 # Overview {-}
 
-## Description 
+Description 
+----------------------------
+
 In this workshop, participants will learn about projected coordinate reference systems (CRS, commonly called “projections”) and how to apply them in R to spatial data. We will discuss the components of a CRS, how to apply them, how to translate your data into a different CRS, and how to choose a CRS.
 
-## Learning Objectives
+Learning Objectives
+----------------------------
+
 By the end of this workshop, participants will have a better understanding of what a projected coordinate system is, why you would choose one over another, and how to apply them correctly to geospatial data in R.
 
-## Prerequisites
+Prerequisites
+----------------------------
+
 Participants should have a basic understanding of R (for example, be able to create variables and load common data formats like a CSV) and a basic understanding of GIS data formats (e.g., raster and vector data). Participants should also install R and RStudio.
