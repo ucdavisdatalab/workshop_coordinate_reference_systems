@@ -36,7 +36,7 @@ The units associated with a given projection are usually linear (feet, meters, e
 
 Many people use the term "projection" when they actually mean "coordinate reference system". (With good reason, right?  Coordinate References System is long and might make you sound pretentious.)  One example is the title of this workshop... but you wouldn't know what it was about if I said it was a workshop on "Coordinate Reference Systems in R", would you?
   
-  *Orange Peel Analogy: a projeciton is how you peel your orange and then flatten the peel.*
+*Orange Peel Analogy: a projeciton is how you peel your orange and then flatten the peel.*
   
 ![An orange peeled like a map projection](http://blogs.lincoln.ac.nz/gis/wp-content/uploads/sites/16/2017/03/laranjoide_1.jpg)
 
@@ -51,9 +51,9 @@ Additional parameters are often necessary to create the full coordinate referenc
   
 ### Which CRS/projection should I use?
   
-  To decide if a projection is right for your data, answer these questions: 
-  1. What is the area of minimal distortion?
-  2. What aspect of the data does it preserve?
+To decide if a projection is right for your data, answer these questions: 
+1. What is the area of minimal distortion?
+2. What aspect of the data does it preserve?
   
 [University of Colorado's Map Projections](https://www.colorado.edu/geography/gcraft/notes/mapproj/mapproj_f.html) and the [Department of Geo-Information Processing](http://kartoweb.itc.nl/geometrics/map%20projections/mappro.html) has a good discussion of these aspects of projections.  Online tools like [Projection Wizard](http://projectionwizard.org/) can also help you discover projections that might be a good fit for your data.
 
@@ -62,7 +62,7 @@ Comments from the pros: Take the time to figure identify a projection that is su
    
 ## Notation for Coordinate Reference Systems in R
    
-   You have two options for identifying a CRS in most R commands.  The documentation for a command that requires projection information will tell you which is required.  Often you can choose between the two options.
+You have two options for identifying a CRS in most R commands.  The documentation for a command that requires projection information will tell you which is required.  Often you can choose between the two options.
    
 ### EPSG Code
    
