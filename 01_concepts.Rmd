@@ -6,7 +6,11 @@ output:
 ---
 # Concepts
 
-## Coordinate Reference System (CRS)
+## Introduction
+
+The earth is a "geoid", a generally spherical shape with some bumps or other distortions from a true shere, but we can think of it as being spherical.  Maps, however, are usually flat, and if they are not flat, they are not the same shape as the earth. To make a flat map from measurements made on a round object, we need to transforms the measurements. After we transform the data, it exists in a **coordinate reference system**.
+
+## Parts of the Coordinate Reference System (CRS)
 
 **CRS = Datum + Projection + Additional Parameters**
   
@@ -18,7 +22,7 @@ A **Datum** is a model of the shape of the earth.
 
 It has angular units (i.e. degrees) and defines the starting point (i.e. where is (0,0)?) so the angles reference a meaningful spot on the earth.
 
-Common global datums are WGS84 and NAD83.  Datums can also be local, fit to a particular area of the globe, but ill-fitting outside the area of intended use.
+A commonly used global datum is WGS84.  Datums can also be local, fit to a particular area of the globe, but ill-fitting outside the area of intended use. NAD83 is an example of a local datum that is fit specifically to North America.
 
 When datums are used by themselves it's called a *Geographic Coordinate System*.
 
@@ -36,7 +40,7 @@ The units associated with a given projection are usually linear (feet, meters, e
 
 Many people use the term "projection" when they actually mean "coordinate reference system". (With good reason, right?  Coordinate References System is long and might make you sound pretentious.)  One example is the title of this workshop... but you wouldn't know what it was about if I said it was a workshop on "Coordinate Reference Systems in R", would you?
   
-*Orange Peel Analogy: a projeciton is how you peel your orange and then flatten the peel.*
+*Orange Peel Analogy: a projection is how you peel your orange and then flatten the peel.*
   
 ![An orange peeled like a map projection](http://blogs.lincoln.ac.nz/gis/wp-content/uploads/sites/16/2017/03/laranjoide_1.jpg)
 
@@ -51,16 +55,19 @@ Additional parameters are often necessary to create the full coordinate referenc
   
 ### Which CRS/projection should I use?
   
-To decide if a projection is right for your data, answer these questions: 
+To decide if a projection is right for your data, answer these questions:
+
 1. What is the area of minimal distortion?
 2. What aspect of the data does it preserve?
+
+Coordinate reference systems can preserve aspects of the map such as shape, area, distance, and direction. Any coordinate reference system cannot preserve more than two of these and often they will only preserve one.
   
 [University of Colorado's Map Projections](https://www.colorado.edu/geography/gcraft/notes/mapproj/mapproj_f.html) and the [Department of Geo-Information Processing](http://kartoweb.itc.nl/geometrics/map%20projections/mappro.html) has a good discussion of these aspects of projections.  Online tools like [Projection Wizard](http://projectionwizard.org/) can also help you discover projections that might be a good fit for your data.
 
 Comments from the pros: Take the time to figure identify a projection that is suited for your project.  You don't have to stick to the ones that are popular.
    
    
-## Notation for Coordinate Reference Systems in R
+## Notation for Coordinate Reference Systems
    
 You have two options for identifying a CRS in most R commands.  The documentation for a command that requires projection information will tell you which is required.  Often you can choose between the two options.
    
@@ -78,7 +85,11 @@ PROJ is an open source library for defining and converting between coordinate re
 
 Two important advantages to using this option are (1) the parameters are human-readable and immediately transparent and (2) the strings are easily customized.  The main disadvantage to this option is that it's easy to make a mistake when you reproduce the string, accidentally changing parameters.
 
-*A note on linguistics:* PROJ is commonly pronounced "prodge" ("PROJ" rhymes with "dodge"); PROJ is short for "projection".  
+*A note on linguistics:* PROJ is commonly pronounced "prodge" ("PROJ" rhymes with "dodge"); PROJ is short for "projection".  Sometimes, you'll hear or see PROJ4. The numeral refers to the version of the library. Version 4 was in use for a long time so even though there's newer versions, you may still see the concept referred to in this way.
 
 ## Defining a Projection vs. Reprojecting (Transforming)
 The #1 biggest mistake I see in any GIS (ArcMap, QGIS, R, GRASS, Python, etc.) is defining a projection for a dataset when the person should have re-projected the data.  It is very common that you'll need to tell your GIS what the projection/CRS of your data should be.  In these cases, the GIS needs to know what the projection/CRS **currently** is, not what you would like it to be.  If you need to change a projection, you need to go through a different process, often called Re-project or Transform.
+
+**Define a Projection/CRS** to indicate what projection or coordinate reference sytem your data has.
+
+**Reproject or Transform a Projection/CRS** when you need to change the coordinate reference system.

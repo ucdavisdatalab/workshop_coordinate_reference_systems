@@ -36,7 +36,7 @@ knitr::opts_knit$set(root.dir = "C:\\Users\\mmtobias\\Documents\\GitHub\\datalab
 ```{r eval = FALSE}
 setwd("C:/WorkshopData")
 ```
-Replace C:/Workshops/Data with the path to the folder in which you saved your data.
+Replace C:/Workshops with the path to the folder in which you saved your data. This workshop assumes your workshop materials are in a folder called "workshopData" and the data is in a folder called "data".
 
 ## Vector Data
 
