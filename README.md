@@ -1,3 +1,5 @@
+**UPDATE:** This workshop is no long being developed here. Please use the [Projections Workshop](https://github.com/ucdavisdatalab/workshop-projections) instead.
+
 # Workshop: Coordinate Reference Sytems
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
